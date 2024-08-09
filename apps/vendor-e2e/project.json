@@ -1,0 +1,29 @@
+{
+  "name": "vendor-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/vendor-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["vendor"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/vendor-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "vendor:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "vendor:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "vendor:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
